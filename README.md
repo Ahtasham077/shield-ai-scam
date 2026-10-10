@@ -6,7 +6,7 @@
 
 - Accepts a message of up to 10,000 characters without opening its URLs.
 - Sends the message only after the visitor selects **Analyze message**.
-- Uses a configured open-weight model through Hugging Face Inference Providers.
+- Uses Lovable's built-in AI inference gateway for live message analysis.
 - Validates structured JSON analysis before it reaches the browser.
 - Does not require accounts, persist message history, or provide fake fallback analyses.
 - Supports copy and local plain-text report download after an analysis.
@@ -16,7 +16,7 @@
 - React, TypeScript, TanStack Start, Tailwind CSS
 - Lucide icons and reusable UI primitives
 - Zod validation
-- Hugging Face Inference Providers for an open-weight model
+- Lovable AI Gateway for secure server-side inference
 
 ## Run locally
 
@@ -26,19 +26,12 @@ cp .env.example .env
 bun dev
 ```
 
-Add server-only values to `.env`:
-
-```dotenv
-HF_TOKEN=hf_your_token_here
-HF_MODEL=your-open-weight-model-id
-```
-
-`HF_TOKEN` and `HF_MODEL` must **not** be prefixed with `VITE_`. This keeps the token out of browser JavaScript. Pick an instruct/chat model available through the configured Hugging Face Inference Provider and review that model's license before release. Provider usage can require a paid Hugging Face account or credits; AI ScamShield does not promise unlimited or free inference.
+No external API key is required. Lovable securely provides the AI credential to the server at runtime; it is never sent to browser code. AI usage is subject to the workspace's available Lovable AI credits.
 
 ## Architecture
 
 ```text
-Browser → TanStack Start server function → Hugging Face Inference Providers
+Browser → TanStack Start server function → Lovable AI Gateway
                                      ↳ validates response JSON
 ```
 
@@ -50,13 +43,13 @@ Messages are not saved by the app. A live analysis does send the submitted text 
 
 ## Demo
 
-Use the four fictional example cards in the interface to test prize, banking, job, and ordinary-message scenarios. Configure the server credentials before testing live AI analysis.
+Use the four fictional example cards in the interface to test prize, banking, job, and ordinary-message scenarios. No external credentials are required for live AI analysis.
 
 ## Limitations
 
 - Analysis relies on message text only and does not verify links, senders, phone numbers, financial institutions, or outside sources.
 - AI output can be incomplete or incorrect.
-- Available models and inference quotas depend on the configured provider.
+- Analysis availability depends on the workspace's Lovable AI service and usage credits.
 
 ## Open source
 
@@ -64,4 +57,4 @@ Released under the [MIT License](./LICENSE). Built for Hacktoberfest Islamabad 2
 
 ## Acknowledgements
 
-Created with Lovable, TanStack Start, React, Tailwind CSS, Lucide, Zod, and Hugging Face Inference Providers.
+Created with Lovable, TanStack Start, React, Tailwind CSS, Lucide, Zod, and Lovable AI Gateway.

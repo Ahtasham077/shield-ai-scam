@@ -9,4 +9,4 @@
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
 
-- Keep scam-message analysis inside TanStack Start server functions so external inference credentials and submitted text never enter the browser bundle.
+- Keep scam-message analysis inside TanStack Start server functions so submitted text and Lovable AI credentials never enter the browser bundle; use the built-in AI Gateway for live analysis.
