@@ -50,7 +50,7 @@ const riskStyles: Record<RiskLevel, string> = {
   critical: "risk-critical",
 };
 
-function riskLabel(risk: RiskLevel) { return risk[0].toUpperCase() + risk.slice(1); }
+function riskLabel(risk: RiskLevel) { return risk.charAt(0).toUpperCase() + risk.slice(1); }
 
 function exportReport(message: string, analysis: ScamAnalysis) {
   const report = [
